@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:18:26 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/06 14:18:16 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:10:47 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,40 @@ ClapTrap::ClapTrap(std::string name) {
 	this->energy = 10;
 }
 
+ClapTrap::ClapTrap(ClapTrap &copy) {
+	std::cout << "Copy constructor called" << std::endl;
+	this->name =  copy.getName();
+	this->atk = copy.getAtk();
+	this->hp = copy.getHp();
+	this->energy = copy.getEnergy();
+}
+
+ClapTrap	&ClapTrap::operator=(const ClapTrap &copy) {
+	std::cout << "Assignation constructor called" << std::endl;
+	this->name = copy.getName();
+	this->atk = copy.getAtk();
+	this->hp = copy.getHp();
+	this->energy = copy.getEnergy();	
+}
+
 ClapTrap::~ClapTrap(void) {
 	std::cout << "ClapTrap " << this->name << " has been destroyed" << std::endl;
+}
+
+std::string	ClapTrap::getName(void) const {
+	return this->name;
+}
+
+int	ClapTrap::getHp(void) const {
+	return this->hp;
+}
+
+int	ClapTrap::getAtk(void) const {
+	return this->atk;
+}
+
+int	ClapTrap::getEnergy(void) const {
+	return this->energy;
 }
 
 void	ClapTrap::attack(const std::string &target) {
@@ -52,7 +84,10 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 	if (this->hp > 0 && this->energy > 0) {
 		std::cout << "ClapTrap " << this->name << " repaire it self and gaine " << amount << " of Hit points" << std::endl;
 		this->energy--;
-		this->hp = this->hp + amount;
+		if (this->hp + amount < 2147483647)
+			this->hp = this->hp + amount;
+		else
+			this->hp = 2147483647;
 	}
 	else
 		std::cout << "ClapTrap " << this->name << " cannot repaire it self" << std::endl;
