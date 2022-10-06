@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:18:26 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/06 15:10:47 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:03:12 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &copy) {
 	this->atk = copy.getAtk();
 	this->hp = copy.getHp();
 	this->energy = copy.getEnergy();	
+	return *this;
 }
 
 ClapTrap::~ClapTrap(void) {
