@@ -13,6 +13,7 @@ CC = c++
 
 FLAGS = -Wall -Werror -Wextra -std=c++98 -I.
 # FLAGS += -fsanitize=address
+
 all: ${NAME}
 
 %.o:%.cpp
