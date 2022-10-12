@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:42:49 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/12 15:05:25 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:07:00 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,18 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-int	main(void)
-{
-	Animal*	animals[6];
+int main() {
 
-	for (int i = 0; i < 3; i++) {
-		animals[i] = new Dog();
-	}
-	for (int i = 3; i < 6; i++) {
-		animals[i] = new Cat();
-	}
-	animals[1]->makeSound();
-	animals[4]->makeSound();
-	std::cout << "---------------------------------------" << std::endl;
-	for (int i = 0; i < 6; i++) {
-		delete	animals[i];
-	}
-	std::cout << "Constructor---------------------------------------" << std::endl;
-	Cat* test = new Cat;
-	Cat* copy = new Cat(*test);
-	std::cout << "Destructor---------------------------------------" << std::endl;
-	delete	test;
-	delete	copy;
+	// const Animal *meta = new Animal();
+	
+	const Animal *j = new Dog();
+	const Animal *i = new Cat();
+	std::cout << j->getType() << " " << std::endl;
+	std::cout << i->getType() << " " << std::endl;
+	i->makeSound();
+	j->makeSound();
+	// meta->makeSound();
+
+	delete	j;
+	delete	i;
 }
