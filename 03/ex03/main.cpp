@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:17:43 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/07 15:31:46 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:41:02 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ int	main(void) {
     Robert.highFiveGuys();
 
     std::cout << "----------------------------------" << std::endl;
+    return 0;
 }
