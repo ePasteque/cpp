@@ -6,13 +6,16 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:11:32 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/17 13:03:53 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:51:38 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
 #include <stdexcept>
+#include "Form.hpp"
+
+class Form ;
 
 class Bureaucrat {
 	public:
@@ -27,6 +30,7 @@ class Bureaucrat {
 
 		void		gradeUp();
 		void		gradeDown();
+		void		signForm(Form *form);
 
 		class GradeTooHighException : public std::exception {
 			public:

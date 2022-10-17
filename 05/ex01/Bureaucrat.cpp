@@ -6,19 +6,19 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:11:41 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/17 13:20:20 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:03:18 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Bob") {
-	std::cout << "default constructor called" << std::endl;
+	std::cout << "Bureaucrat default constructor called" << std::endl;
 	this->_grade = 150;
 }
 
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name) {
-	std::cout << "default constructor called" << std::endl;
+	std::cout << "Bureaucrat default constructor called" << std::endl;
 	try {
 		if (grade > 150)
 			throw Bureaucrat::GradeTooLowException();
@@ -33,18 +33,18 @@ Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name) {
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat &copy) : _name(copy._name) {
-	std::cout << "copy constructor called" << std::endl;
+	std::cout << "Bureaucrat copy constructor called" << std::endl;
 	*this = copy;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy) {
-	std::cout << "assignation constructor called" << std::endl;
+	std::cout << "Bureaucrat assignation constructor called" << std::endl;
 	this->_grade = copy._grade;
 	return *this;
 }
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << "destructor called" << std::endl;
+	std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
 std::string Bureaucrat::getName() const {
@@ -77,6 +77,18 @@ void	Bureaucrat::gradeDown() {
 		return ;
 	}
 	this->_grade++;
+}
+
+void	Bureaucrat::signForm(Form *form) {
+	if (form->getIsSigned() == true) {
+		std::cout << this->_name << " couldn't sign " << form->getName() << " because it's aready signed" << std::endl;
+	}
+	else if (this->_grade > form->getSignGrade()) {
+		std::cout << this->_name << " couldn't sign " << form->getName() << " because bureaucrat grade is too low" << std::endl;
+	}
+	else {
+		std::cout << this->_name << " signed " << form->getName() << std::endl;
+	}
 }
 
 std::ostream	&operator<<(std::ostream& os, Bureaucrat const& curr) {

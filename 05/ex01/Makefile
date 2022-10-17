@@ -1,7 +1,8 @@
 NAME	=	Bureaucrat
 
 SRCS	=	main.cpp \
-			Bureaucrat.cpp
+			Bureaucrat.cpp \
+			Form.cpp
 
 OBJ	= ${SRCS:.cpp=.o}
 

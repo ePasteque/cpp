@@ -6,29 +6,46 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:11:21 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/17 13:29:17 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:48:45 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main()
 {
-	Bureaucrat	Bob("Bob", 151);
-	Bureaucrat	Georges("Georges", 2);
+	try
+	{
+		// Bureaucrat	Bob("Bob", 151);
 
-	Bureaucrat	Timothee(Georges);
+		Bureaucrat	Georges("Georges", 2);
 
-	std::cout << "---------------------" << std::endl;
+		Bureaucrat	Timothee(Georges);
 
-	Timothee.gradeUp();
-	std::cout << Timothee << std::endl;
-	Timothee.gradeUp();
-	std::cout << Timothee << std::endl;
+		Form		randomPaper("random", 5, 10);
 
-	Bureaucrat Frederic("Frederic", 150);
-	std::cout << Frederic << std::endl;
-	Frederic.gradeDown();
+		std::cout << "---------------------" << std::endl;
 
-	std::cout << "---------------------" << std::endl;
+		Timothee.gradeUp();
+		std::cout << Timothee << std::endl;
+		Timothee.gradeUp();	
+		std::cout << Timothee << std::endl;
+
+		Bureaucrat Frederic("Frederic", 150);
+		Frederic.gradeDown();
+
+
+		std::cout << "---------------------" << std::endl;
+
+		Frederic.signForm(&randomPaper);
+		randomPaper.beSigned(&Georges);
+
+		randomPaper.beSigned(&Georges);
+		
+		std::cout << "---------------------" << std::endl;
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
