@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbattest <lbattest@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:42:32 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/20 11:42:32 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:34:59 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Intern::Intern(const Intern& copy) {
 
 Intern &Intern::operator=(const Intern& copy) {
 	std::cout << "Intern assignation constructor called" << std::endl;
-	(void)copy
+	(void)copy;
 	return *this;
 }
 
@@ -34,7 +34,7 @@ Intern::~Intern() {
 	std::cout << "Intern destructor called" << std::endl;
 }
 
-Form*	Intern::makeForm(std::string name, std::string target) const {
+Form*	Intern::makeForm(std::string name, std::string target) {
 	try {
 		std::string	array[3] = {"robotomy request", "presidential pardon", "shrubbery creation"};
 		Form*		(Intern::*form[])(std::string target) = {&Intern::createRobotomy, &Intern::createPresidential, &Intern::createShrubbery};
@@ -46,7 +46,7 @@ Form*	Intern::makeForm(std::string name, std::string target) const {
 		throw std::exception();
 	}
 	catch (const std::exception& e) {
-		std::cerr << "This form does not exist" << std:endl;
+		std::cerr << "This form does not exist" << std::endl;
 		return NULL;
 	}
 }

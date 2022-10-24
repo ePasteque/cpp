@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbattest <lbattest@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:43:36 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/20 11:43:36 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:23:41 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Intern {
 		Intern &operator=(const Intern& copy);
 		~Intern();
 
-		Form*	makeForm(std::string name, std::string target) const;
+		Form*	makeForm(std::string name, std::string target);
 	
 	private:
 		Form	*createRobotomy(std::string target);

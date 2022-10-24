@@ -6,13 +6,15 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 16:11:21 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/19 17:59:56 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:37:48 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int	main()
 {
@@ -25,7 +27,7 @@ int	main()
 
 		Form	*paper = new ShrubberyCreationForm("garden");
 		Form	*paper2 = new RobotomyRequestForm("Roger");
-		Form	*paper3 = new PresidentialPardonForm("Bob");
+		Form	*paper3 = new PresidentialPardonForm("Robert");
 
 		std::cout << "---------------------" << std::endl;
 
@@ -44,24 +46,37 @@ int	main()
 		paper->execute(Frederic);
 		paper->execute(Timothee);
 		std::cout << "--------------------- Paper 2 ---------------------" << std::endl;
-
 		paper2->execute(Frederic);
 		Timothee.signForm(paper2);
 		paper2->execute(Timothee);
 		std::cout << "--------------------- Paper 3 ---------------------" << std::endl;
-
 		paper3->execute(Frederic);
+		Timothee.executeForm(*paper3);
 		Timothee.signForm(paper3);
 		Timothee.executeForm(*paper3);
+		
+		std::cout << "---------------------" << std::endl;
+		
+		Intern	Titouan;
+
+		Form	*paper4 = Titouan.makeForm("robotomy request", "Robert");
+		Form	*paper5 = Titouan.makeForm("presidential pardon", "Timothee");
+		
+		paper5->beSigned(&Georges);
+		paper5->execute(Georges);
+
+		(void)paper4;
 
 		std::cout << "---------------------" << std::endl;
 
 		delete	paper;
 		delete	paper2;
 		delete	paper3;
+		delete	paper5;
 	}
-	catch (const std::exception &e)
+	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << e.what() << '\n';
 	}
+	
 }
