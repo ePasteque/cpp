@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 15:41:29 by lbattest          #+#    #+#             */
-/*   Updated: 2022/11/08 13:19:09 by lbattest         ###   ########.fr       */
+/*   Created: 2022/11/03 11:56:35 by lbattest          #+#    #+#             */
+/*   Updated: 2022/11/03 16:07:00 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector>
-#include <climits>
-#include <algorithm>
+#pragma once
 #include <iostream>
-#include <random>
+#include <list>
+#include <vector>
 
-class Span {
-	public:
-		Span(unsigned int nbr);
-		Span(const Span& copy);
-		Span &operator=(const Span& copy);
-		~Span();
-	
-		void addNumber(int nbr);
-		int shortestSpan();
-		int longestSpan();
-		void addRange(int nbr, int min, int max);
-	private:
-		std::vector<int>	_array;
-		unsigned int		_left_space;
-		unsigned int		_inc;
-};
+template<typename T>
+int	easyfind(T container, int nbr) {
+	typename T::iterator	i = std::find(container.begin(), container.end(), nbr);
+	if (i == container.end()) {
+		throw std::exception();
+	}
+	return std::distance(container.begin(), i);
+}
