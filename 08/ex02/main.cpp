@@ -6,11 +6,11 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 14:11:40 by lbattest          #+#    #+#             */
-/*   Updated: 2022/11/08 15:20:54 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/11/09 09:20:36 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MutantStack.hpp"
+#include "MutantStack.tpp"
 
 int main() {
 	MutantStack<int> mstack;

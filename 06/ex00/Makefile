@@ -1,7 +1,7 @@
 NAME	=	convert
 
 SRCS	=	main.cpp \
-			# Literal.cpp
+			Literal.cpp
 
 
 OBJ	= ${SRCS:.cpp=.o}
