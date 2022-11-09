@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:16:45 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/12 14:41:07 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:28:15 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class	Dog : public Animal {
 		Dog(void);
 		Dog(Dog &copy);
 		Dog &operator=(const Dog &copy);
-		~Dog(void);
+		virtual ~Dog(void);
 
 		void	makeSound(void) const;
 	private:

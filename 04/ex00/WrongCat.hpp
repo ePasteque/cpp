@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:22:07 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/12 11:24:10 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:25:19 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,6 @@ class WrongCat : public WrongAnimal {
 		WrongCat(WrongCat &copy);
 		WrongCat &operator=(const WrongCat &copy);
 		~WrongCat();
+
+		void	makeSound() const;
 };

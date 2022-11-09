@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:15:23 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/12 11:45:02 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/11/09 18:25:15 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class WrongAnimal {
 		WrongAnimal &operator=(const WrongAnimal &copy);
 		virtual ~WrongAnimal();
 
-		virtual void	makeSound() const;
+		void	makeSound() const;
 		std::string		getType() const;
 	protected:
 		std::string	type;
