@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:42:32 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/24 14:34:59 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/11/15 09:35:42 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,14 @@ Intern::~Intern() {
 }
 
 Form*	Intern::makeForm(std::string name, std::string target) {
-	try {
-		std::string	array[3] = {"robotomy request", "presidential pardon", "shrubbery creation"};
-		Form*		(Intern::*form[])(std::string target) = {&Intern::createRobotomy, &Intern::createPresidential, &Intern::createShrubbery};
-		for (int i = 0; i < 3; i++) {
-			if (array[i] == name) {
-				return (this->*form[i])(target);
-			}
+	std::string	array[3] = {"robotomy request", "presidential pardon", "shrubbery creation"};
+	Form*		(Intern::*form[])(std::string target) = {&Intern::createRobotomy, &Intern::createPresidential, &Intern::createShrubbery};
+	for (int i = 0; i < 3; i++) {
+		if (array[i] == name) {
+			return (this->*form[i])(target);
 		}
-		throw std::exception();
 	}
-	catch (const std::exception& e) {
-		std::cerr << "This form does not exist" << std::endl;
-		return NULL;
-	}
+	throw std::exception();
 }
 
 Form	*Intern::createRobotomy(std::string target) {

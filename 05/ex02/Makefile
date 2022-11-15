@@ -17,7 +17,7 @@ FLAGS = -Wall -Werror -Wextra -std=c++98 -I.
 
 all: ${NAME}
 
-%.o:%.cpp
+%.o:%.cpp %.hpp
 	${CC} ${FLAGS} -c $< -o $@
 
 ${NAME}:    ${OBJ}

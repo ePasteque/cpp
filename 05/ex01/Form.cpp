@@ -6,7 +6,7 @@
 /*   By: lbattest <lbattest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:31:19 by lbattest          #+#    #+#             */
-/*   Updated: 2022/10/17 15:28:02 by lbattest         ###   ########.fr       */
+/*   Updated: 2022/11/11 18:46:00 by lbattest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 Form::Form(std::string const name, int signGrade, int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade) {
 	std::cout << "Form default constructor called " << std::endl;
 	this->_isSigned = false;
-	try {
-		if (signGrade > 150 || execGrade > 105)
-			throw Form::GradeTooLowException();
-		else if (signGrade < 1 || execGrade < 1)
-			throw Form::GradeTooHighException();
-	}
-	catch (const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-		return ;
-	}
+	if (signGrade > 150 || execGrade > 150)
+		throw Form::GradeTooLowException();
+	else if (signGrade < 1 || execGrade < 1)
+		throw Form::GradeTooHighException();
 }
 
 Form::Form(Form &copy) : _name(copy._name), _signGrade(copy._signGrade), _execGrade(copy._execGrade){
@@ -64,15 +58,10 @@ std::ostream	&operator<<(std::ostream& os, Form const& curr) {
 }
 
 void Form::beSigned(Bureaucrat *p) {
-	try {
-		if (this->_signGrade < p->getGrade())
-			throw Form::GradeTooLowException();
-		else if (this->_isSigned == true)
-			throw Form::AlreadySigned();
-		this->_isSigned = true;
-		std::cout << this->getName() << " is signed by " << p->getName() << std::endl;
-	}
-	catch (const std::exception &e) {
-		std::cerr << e.what() << std::endl;
-	}
+	if (this->_signGrade < p->getGrade())
+		throw Form::GradeTooLowException();
+	else if (this->_isSigned == true)
+		throw Form::AlreadySigned();
+	this->_isSigned = true;
+	std::cout << this->getName() << " is signed by " << p->getName() << std::endl;
 }
