@@ -4,14 +4,6 @@
 
 #pragma once
 
-//#include <iostream>
-//#include <algorithm>
-//#include <ostream>
-//#include <fstream>
-//#include <string>
-//#include <map>
-//#include <iomanip>
-//#include <cstdlib>
 # include <fstream>
 # include <iostream>
 # include <string>
@@ -21,7 +13,9 @@
 
 class BitcoinExchange {
 	private:
-		std::map<std::string, float> _data;
+		std::map<std::string, float>	_data;
+		std::string						_date;
+		double							_nbr;
 	public:
 		BitcoinExchange();
 		BitcoinExchange(BitcoinExchange const &rhs);
@@ -29,8 +23,8 @@ class BitcoinExchange {
 		~BitcoinExchange();
 
 		int parseData();
-		void parseLine(std::string &line);
-		void afficheData();
+		bool parseLine(std::string &line);
+		void doMagic();
 		std::map<std::string, float>::iterator findDate(std::string &date);
 };
 

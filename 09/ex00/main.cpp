@@ -13,12 +13,12 @@ int main(int argc, char **argv) {
 	(void)argv;
 	if (bct.parseData() == 1)
 		return 1;
-//	bct.afficheData();
 	std::ifstream ifFile(argv[1]);
 	if (ifFile.is_open()) {
 		std::string line;
 		while (getline(ifFile, line)) {
-			bct.parseLine(line);
+			if (bct.parseLine(line))
+				bct.doMagic();
 		}
 	}
 	else {

@@ -19,7 +19,6 @@ BitcoinExchange::~BitcoinExchange() {}
 
 int BitcoinExchange::parseData() {
 	std::string line;
-	std::string tmp;
 	std::string date;
 	std::ifstream ifData("data.csv");
 	if (ifData.is_open()) {
@@ -37,53 +36,66 @@ int BitcoinExchange::parseData() {
 	return 0;
 }
 
-void BitcoinExchange::parseLine(std::string &line) {
+bool BitcoinExchange::parseLine(std::string &line) {
 	if (line == "date | value" || line.empty())
-		return;
-	std::string date;
+		return false;
+	_date.clear();
 	std::string value;
 	size_t i;
 	i = line.find('|');
 	if (i == 11 && line[i - 1] == ' ' && line[i + 1] && line[i + 1] == ' ' && line.size() > 13) {
-		date.append(line, 0, i - 1);
-		value.append(line, i + 1, std::string::npos);
+		_date.append(line, 0, i - 1);
+		value.append(line, i + 2, std::string::npos);
 	}
 	else {
 		std::cout << "Error: bad input => " << line << std::endl;
-		return;
+		return false;
 	}
-
 	i = 0;
-	for (; date[i]; i++) {
-		if ((i != 4 && i != 7 && !isdigit(date[i])) || ((i == 4 || i == 7) && date[i] != '-')) {
+	for (; _date[i]; i++) {
+		if ((i != 4 && i != 7 && !isdigit(_date[i])) || ((i == 4 || i == 7) && _date[i] != '-')) {
 			std::cout << "Error: bad input => " << line << std::endl;
-			return;
+			return false;
 		}
 	}
 
-	i = value.find('.');
-	if (i )
+	size_t comma = value.find_first_of('.');
+	if (comma == 0 || !value[comma + 1]) {
+		std::cout << "Error: bad input => " << line << std::endl;
+		return false;
+	}
+	i = 0;
+	for (; value[i]; i++) {
+		if (value[i] == '-') {
+			std::cout << "Error: not a positive number.\n";
+			return false;
+		}
+		else if ((!isdigit(value[i]) && value[i] != '.')) {
+			std::cout << "Error: bad input => " << line << std::endl;
+			return false;
+		}
+		else if (value[i] == '.' && i != comma) {
+			std::cout << "Error: bad input => " << line << std::endl;
+			return false;}
+	}
+	_nbr = std::strtod(value.c_str(), NULL);
+	if (_nbr < 0 || _nbr > 1000){
+		std::cout << "Error: number must be between 0 and 1000.\n";
+		return false;
+	}
+	return true;
 }
 
-void BitcoinExchange::afficheData() {
-	std::map<std::string, float>::iterator it = _data.begin();
-	int i = 0;
-	for (; it != _data.end(); it++) {
-		i++;
-		if (i > 500) {
-//			std::cout << ("2011-02-03" > "2011-01-03") << std::endl;
-			break;
-		}
-
-//		std::cout << "[" <<  it->first << "] - [" << it->second << "]\n";
-	}
+void BitcoinExchange::doMagic() {
+	std::map<std::string, float>::iterator it = findDate(_date);
+	std::cout << _date << " => " << _nbr << " = " << _nbr * it->second << std::endl;
 }
 
 std::map<std::string, float>::iterator BitcoinExchange::findDate(std::string &date) {
 	std::map<std::string, float>::iterator it = _data.find(date);
 	if (it == _data.end()) {
 		it = _data.lower_bound(date);
-		if (it != _data.end() && it != _data.begin())
+		if (it != _data.begin())
 			it--;
 	}
 	return it;
